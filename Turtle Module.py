@@ -1,0 +1,18 @@
+import turtle
+from turtle import *
+tutrle = turtle.Turtle()
+tutrle.color("red")
+tutrle.pensize(5)
+tutrle.speed(10)
+tutrle.forward(100)
+tutrle.circle(50)
+tutrle.right(90)
+tutrle.forward(100)
+tutrle.circle(50)
+tutrle.right(90)
+tutrle.forward(100)
+tutrle.circle(50)
+tutrle.right(90)
+tutrle.forward(100)
+tutrle.circle(50)
+exitonclick()
