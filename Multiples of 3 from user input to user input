@@ -1,0 +1,6 @@
+a = int(input("Enter a number: "))
+final_number = int(input("Enter a number: "))
+while a < final_number:
+    if a % 3 == 0:
+        print(a)
+    a = a + 1
