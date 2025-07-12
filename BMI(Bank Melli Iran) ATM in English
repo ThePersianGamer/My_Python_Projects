@@ -1,0 +1,61 @@
+print("Welcome to BMI (Bank Melli Iran).")
+print("To make a new BMI (Bank Melli Iran) account you need to first make a username and password.")
+
+username = input("Enter a username which is at least 4 characters long: ")
+while True:
+    if len(username) < 4:
+        print("Change your username to at least 4 characters long.")
+        username = input("Enter a username: ")
+    else:
+        break
+
+password = input("Enter a password at least 8 characters long: ")
+while True:
+    if len(password) < 8:
+        print("Change your password to at least 8 characters long.")
+        username = input("Enter a password: ")
+    else:
+        break
+
+print("Login to your account.")
+username_check = input("Enter your username: ")
+password_check = input("Enter your password: ")
+
+if username_check != username or password_check != password:
+    print("Access denied. Invalid username or password.")
+elif username_check == username and password_check == password:
+    balance = 0
+    print("Access granted!")
+    print(f"Balance💵: {balance}₼")
+
+    while True:
+        print("Would you like to either: withdraw / deposit / exit?")
+        selected_option = input("1 = withdraw, 2 = deposit, 3 = exit. ")
+
+        if selected_option == "1":
+            withdraw = int(input("How much AZN to withdraw: "))
+            if withdraw < 0:
+                print("You ain't robbing us💵.")
+                continue
+
+            if withdraw > balance:
+                print("Insufficient funds.")
+            else:
+                balance = balance - withdraw
+                print(f"Balance💵: {balance}₼")
+        elif selected_option == "2":
+            deposit = int(input("How much AZN to deposit: "))
+            if deposit < 0:
+                print("You ain't putting negative money💵.")
+                continue
+
+            balance = deposit + balance
+            print(f"Balance💵: {balance}₼")
+        elif selected_option == "3":
+            print("Would you like a receipt?")
+            receipt = int(input("1 = Yes, 2 = No. "))
+            if receipt == 1:
+                print("*Printing receipt🧾*")
+            break
+        else:
+            print("Invalid option please try again.")
