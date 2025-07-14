@@ -1,0 +1,60 @@
+def bday_check(name, surname, birthday):
+
+    if len(name) < 3:
+        print("❗Name should be 3 or more letters long❗")
+        return False
+
+    elif len(surname) < 4:
+        print("❗Surname should be 3 or more letters long❗")
+        return False
+
+    elif len(bday) != 10:
+        print("❗YOU FAILURE (YOU AREN'T THAT OLD BRUV)❗")
+        return False
+
+    slash1 = bday[2]
+    slash2 = bday[5]
+    year = int(bday[6:10])
+    day = int(bday[0:2])
+    month = int(bday[3:4])
+
+    if slash1 != "/" or slash2 != "/":
+        print("Invalid birthday")
+        return False
+
+    elif day > 31 or day < 1:
+        print("Wrong day bruv, fix your mistake.")
+        return False
+
+    elif month > 12 or month < 1:
+        print("Wrong month bruv, fix your mistake.")
+        return False
+    
+    elif year < 1911 or year > 2025:
+        print("Wrong year bruv, fix your mistake.")
+        return False
+
+    invalid_characters = False
+    for char in name:
+        if not char.isalpha():
+            invalid_characters = True
+            break
+    if invalid_characters:
+        print("❗NO SYMBOLS OR LETTERS❗")
+        return False
+
+    invalid_characters = False
+    for char in surname:
+        if not char.isalpha():
+            invalid_characters = True
+            break
+    if invalid_characters:
+        print("❗NO SYMBOLS OR LETTERS❗")
+        return False
+
+    return name, surname, birthday
+
+name = input("Enter your name: ")
+surname = input("Enter your surname: ")
+bday = input("Enter your birthday (DD/MM/YYYY): ")
+print(f"{bday_check(name, surname, bday)}")
