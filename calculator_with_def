@@ -1,0 +1,19 @@
+def addition(x, y):
+    return x + y
+def subtraction(x, y):
+    return x - y
+def multiplication(x, y):
+    return x * y
+def division(x, y):
+    return x / y
+n1 = int(input("Input first number: "))
+n2 = int(input("Input first number: "))
+op = input("Enter an operator(+, -, *, /): ")
+if op == "+":
+    print(f"Your answer is {addition(n1, n2)}.")
+if op == "-":
+    print(f"Your answer is {subtraction(n1, n2)}.")
+if op == "*":
+    print(f"Your answer is {multiplication(n1, n2)}.")
+if op == "/":
+    print(f"Your answer is {division(n1, n2)}.")
