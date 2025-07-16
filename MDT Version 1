@@ -1,0 +1,70 @@
+#This MDT is for Police/Sheriff.
+#Goal: Make a complicated and long code which will have most stuff that an MDT has.
+#Objectives:
+# -Add a system where you need to sign in.
+# -Add a way to see all active calls.
+# -Add a way to see all available units and their info.
+# -Add a way to see the wanted suspects.
+# -Add a way to search people via name and surname.
+# -Add at least 2 access able cameras.
+username = "TEST"
+password = "TEST"
+
+print("Hello, welcome to the Police/Sheriff MDT.")
+print("To sign in, please enter your username and password that has been provided by authorities.")
+print("Login to your account.")
+
+username_check = input("Enter your username: ")
+password_check = input("Enter your password: ")
+
+if username_check != username or password_check != password:
+    print("Access denied, invalid username or password.")
+elif username_check == username and password_check == password:
+    print("Access granted.")
+
+    while True:
+        print("Choose one option:")
+        print("1: Available Units")
+        print("2: Active Calls")
+        print("3: Wanted People")
+        print("4: Car BOLOs")
+        print("5: Search People (In Progress)")
+        print("6: Police Cameras (In Progress)")
+        print("7: READ_ME")
+        print("8: Exit")
+        selected_option = input("Selected Option: ")
+
+        if selected_option == "1":
+            print("Available Units:")
+            available_units = ["Ethan Blake (Sergeant), Liam Carter (Detective), William Grant (Captain), Noah Hayes (Lieutenant), Oliver Stone (Corporal)"]
+            print(available_units)
+        elif selected_option == "2":
+            active_calls = ["Main St. {Three Guys Armed Robbery}, Spring Creek Rd. {Shots Fired}, Elm Street {Auto Theft}"]
+            print(active_calls)
+        elif selected_option == "3":
+            wanted_people = ["Ethan Parker {Armed Robbery}, Lucas Bennet {Reckless Driving & Speeding}, Olivia Taylor {Auto Theft}"]
+            print(wanted_people)
+        elif selected_option == "4":
+            car_bolos = {"Black 2022 Dodge Challenger SRT Plate: XYZ-456 {Stolen}, Green 2023 BMW M5 Plate: GHI-789 {Used In Robbery},Brown 2024 Porsche Cayenne Plate: DEF-012 {Reckless Driving & Speeding}"}
+            print(car_bolos)
+        elif selected_option == "5":
+            who_to_search = input("Search: ")
+        elif selected_option == "6":
+            print("Choose One Camera: ")
+            print("1: Highway 55")
+            print("2: Grand St.")
+            print("3: Academy Pl.")
+            selected_camera = input("Selected Camera: ")
+            if selected_camera == "1":
+                print("NOT DONE")
+            elif selected_camera == "2":
+                print("NOT DONE")
+            elif selected_camera == "3":
+                print("NOT DONE")
+        elif selected_option == "7":
+            print("You can customize username and password whenever you want by replacing the (TEST) by a custom one.")
+            print("To search you need to write the correct variable.")
+            print("This is a project which I got inspired of from a game in Roblox called ERLC.")
+            print("In that game there is an MDT for Police/Sheriff, Fire & Rescue and DOT.")
+        elif selected_option == "8":
+            break
