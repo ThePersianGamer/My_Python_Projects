@@ -1,0 +1,143 @@
+import json
+import os
+
+FILEPATH = "riverside_bank_data.json"
+
+
+class USER:
+    def __init__(self, firstname, lastname, pin, balance=0):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.pin = pin
+        self.balance = balance
+
+        self.fullname = firstname + " " + lastname
+
+    def deposit(self):
+        deposit = int(input(f"Deposit Amount: "))
+        if deposit > 1000:
+            print(f"The deposit amount ({deposit}) is over 1000, please lower your deposit.")
+        else:
+            self.balance += deposit
+            print(f"Deposit Successful! Deposit: {deposit} | Balance: {self.balance}")
+
+            with open(FILEPATH, "r") as f:
+                data = json.load(f)
+
+            for user in data:
+                if user["firstname"] == self.firstname and user["lastname"] == self.lastname and user[
+                    "pin"] == self.pin:
+                    user["balance"] = self.balance
+
+            with open(FILEPATH, "w") as f:
+                json.dump(data, f, indent=4)
+
+    def withdraw(self):
+        withdraw = int(input(f"Deposit Amount: "))
+        if withdraw > 500:
+            print(f"The deposit amount ({withdraw}) is over 1000, please lower your deposit.")
+        else:
+            self.balance -= withdraw
+            print(f"Deposit Successful! Withdraw: {withdraw} | Balance: {self.balance}")
+
+            with open(FILEPATH, "r") as f:
+                data = json.load(f)
+
+            for user in data:
+                if user["firstname"] == self.firstname and user["lastname"] == self.lastname and user[
+                    "pin"] == self.pin:
+                    user["balance"] = self.balance
+
+            with open(FILEPATH, "w") as f:
+                json.dump(data, f, indent=4)
+
+    def show_balance(self):
+        print(self.balance)
+
+
+class BANK:
+    def __init__(self):
+        if os.path.exists(FILEPATH):
+            with open(FILEPATH, "r") as f:
+                try:
+                    self.users = json.load(f)
+                except json.JSONDecodeError:
+                    self.users = []
+        else:
+            self.users = []
+            with open(FILEPATH, "w") as f:
+                json.dump(self.users, f)
+
+    def register(self):
+        firstname = input(f"Firstname: ")
+        lastname = input(f"Lastname: ")
+        pin = int(input(f"PIN (4 DIGITS): "))
+        while len(str(pin)) != 4:
+            print(f"Re-Write PIN")
+            pin = int(input(f"PIN (4 DIGITS): "))
+
+        new_user = {
+            "firstname": firstname,
+            "lastname": lastname,
+            "pin": pin,
+            "balance": 0
+        }
+        self.users.append(new_user)
+        with open(FILEPATH, "w") as f:
+            json.dump(self.users, f, indent=4)
+
+    def login(self):
+        firstname_login = input(f"Firstname: ")
+        lastname_login = input(f"Lastname: ")
+        pin_login = int(input(f"PIN (4 DIGITS): "))
+
+        for user in self.users:
+            if user["firstname"] == firstname_login and user["lastname"] == lastname_login and user["pin"] == pin_login:
+                return USER(firstname_login, lastname_login, pin_login, user["balance"])
+        return False
+
+
+def atm_interface():
+    bank = BANK()
+    exit_status = False
+    while not exit_status:
+        print(f"Options: ")
+        print(f"Option 1: Register")
+        print(f"Option 2: Login")
+        print(f"Option 3: Exit")
+        chosen_option = int(input(f"Option: "))
+        if chosen_option == 1:
+            bank.register()
+        elif chosen_option == 2:
+            user = bank.login()
+            if user:
+                user_menu(user)
+        elif chosen_option == 3:
+            exit_status = True
+        else:
+            print("Invalid Option!")
+
+
+def user_menu(user):
+    exit_status = False
+    while not exit_status:
+        print(f"Welcome to Riverside Bank, Pick an Options: ")
+        print(f"Option 1: Deposit")
+        print(f"Option 2: Withdraw")
+        print(f"Option 3: Balance")
+        print(f"Option 4: Logout")
+        chosen_option = int(input(f"Option: "))
+        if chosen_option == 1:
+            print(user.deposit())
+        elif chosen_option == 2:
+            print(user.withdraw())
+        elif chosen_option == 3:
+            print(user.show_balance())
+        elif chosen_option == 4:
+            print(f"Thank You for Choosing Riverside Bank")
+            exit_status = True
+        else:
+            print(f"Invalid Option!")
+
+
+atm_interface()
