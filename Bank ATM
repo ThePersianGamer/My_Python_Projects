@@ -1,5 +1,5 @@
-print("Welcome to BMI (Bank Melli Iran).")
-print("To make a new BMI (Bank Melli Iran) account you need to first make a username and password.")
+print("Welcome to Bank.")
+print("You first need to make an account.")
 
 username = input("Enter a username which is at least 4 characters long: ")
 while True:
